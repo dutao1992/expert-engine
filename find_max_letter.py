@@ -37,8 +37,9 @@ for x in range(len(matrix1)):
         judge.append(x+1)#记录新数字在matrix2中的位置
 
 
-#打印出现次数最多的字幕和次数
+#打印最多次数列表
 print(max_stack)
 
+#打印最多出现次数对应的字母
 for i in range(len(judge)):
     print(matrix2[judge[i]])
