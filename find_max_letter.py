@@ -39,5 +39,6 @@ for x in range(len(matrix1)):
 
 #打印出现次数最多的字幕和次数
 print(max_stack)
+
 for i in range(len(judge)):
     print(matrix2[judge[i]])
