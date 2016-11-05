@@ -4,7 +4,6 @@ def twoSum(nums,target):
 		num = nums[index]
 		if num in dict:
 			return [dict[num],index]
-			break
 		else:
 			dict[target-num]=index
 	print('we cannot find it')
