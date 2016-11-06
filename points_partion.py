@@ -105,7 +105,7 @@ if __name__ == '__main__':
     p1 = [0.5, 1]
     p2 = [1, 0.5]
     p3 = [0.5, 0]
-    box = {}
+    box = {} #保存区域和散点到区域重心距离之和到该字典
 
     def find():
         x = sum_distance(p0,p1,p2,p3,points)
@@ -116,7 +116,7 @@ if __name__ == '__main__':
         if p0[1] <= 1:
             box[x] = [p0, p1, p2, p3]
             find()
-        return min(box.iteritems(), key=lambda x:x[0])[1]
+        return min(box.iteritems(), key=lambda x:x[0])[1]#返回使得散点到区域重心距离之和为最小的区域划分方式
 
     find()
 
