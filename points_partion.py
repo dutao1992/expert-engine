@@ -3,6 +3,7 @@ from __future__ import division
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import copy
 
 
 def distance(x,y):
@@ -105,20 +106,22 @@ if __name__ == '__main__':
     p1 = [0.5, 1]
     p2 = [1, 0.5]
     p3 = [0.5, 0]
-    box = {} #保存区域和散点到区域重心距离之和到该字典
+    box = {}
 
     def find():
         x = sum_distance(p0,p1,p2,p3,points)
-        p0[1] += 0.01
-        p1[0] += 0.01
-        p2[1] -= 0.01
-        p3[0] -= 0.01
+        p = copy.deepcopy([p0,p1,p2,p3]) #需用深度复制，否则只能复制地址，从而使字典值被覆盖
+        box.setdefault(x,p)
         if p0[1] <= 1:
-            box[x] = [p0, p1, p2, p3]
+            p0[1] += 0.01
+            p1[0] += 0.01
+            p2[1] -= 0.01
+            p3[0] -= 0.01
+            print box
             find()
-        return min(box.iteritems(), key=lambda x:x[0])[1]#返回使得散点到区域重心距离之和为最小的区域划分方式
+        return min(box.items())[1]
 
-    find()
+    p_region = find()
 
     fig = plt.figure()
     plt.xlim(0,1)
@@ -128,5 +131,5 @@ if __name__ == '__main__':
     y = [y[1] for y in points]
     ax.scatter(x,y)
     xp = np.linspace(0,1,100)
-    ax.plot(xp,(p0[1] - p2[1]) / (p0[0] - p2[0])*xp+p0[1])
-    ax.plot(xp,(p1[1] - p3[1]) / (p1[0] - p3[0])*(xp-p1[0])+p1[1])
+    ax.plot(xp,(p_region[0][1] - p_region[2][1]) / (p_region[0][0] - p_region[2][0])*xp+p_region[0][1])
+    ax.plot(xp,(p_region[1][1] - p_region[3][1]) / (p_region[1][0] - p_region[3][0])*(xp-p_region[1][0])+p_region[1][1])
