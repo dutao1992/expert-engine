@@ -7,7 +7,7 @@
 * This includes:
   
     * Change the job as soon as possible.
-    * Get mort salary
+    * Get more salary
     * Learn more about computer and software.
     * Become a expert in at least one region.
     
